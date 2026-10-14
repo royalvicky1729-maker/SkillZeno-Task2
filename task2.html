@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Student Productivity Dashboard for managing tasks, notes, deadlines and daily goals">
+
+    <title>Student Productivity Dashboard</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            SD
+        </div>
+
+        <div>
+            <h2>StudyDesk</h2>
+            <span>Student Dashboard</span>
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#dashboard" class="nav-item active">
+            <span>⌂</span>
+            Dashboard
+        </a>
+
+        <a href="#tasks" class="nav-item">
+            <span>✓</span>
+            Tasks
+        </a>
+
+        <a href="#notes" class="nav-item">
+            <span>📝</span>
+            Notes
+        </a>
+
+        <a href="#deadlines" class="nav-item">
+            <span>⏰</span>
+            Deadlines
+        </a>
+
+        <a href="#goals" class="nav-item">
+            <span>🎯</span>
+            Daily Goals
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+
+        <p>
+            Student Productivity
+        </p>
+
+        <small>
+            Stay organized. Stay productive.
+        </small>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button id="menuBtn"
+                class="menu-btn">
+            ☰
+        </button>
+
+
+        <div>
+
+            <h1>
+                Student Dashboard
+            </h1>
+
+            <p id="currentDate">
+                Loading date...
+            </p>
+
+        </div>
+
+
+        <button id="themeBtn"
+                class="theme-btn"
+                title="Toggle Theme">
+            🌙
+        </button>
+
+    </header>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard"
+             class="page-section">
+
+        <div class="welcome-card">
+
+            <div>
+
+                <span class="badge">
+                    STUDENT PRODUCTIVITY
+                </span>
+
+                <h2>
+                    Welcome back! 👋
+                </h2>
+
+                <p>
+                    Manage your tasks, notes, deadlines
+                    and daily goals from one place.
+                </p>
+
+            </div>
+
+            <div class="welcome-icon">
+                📚
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    📋
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Tasks
+                    </span>
+
+                    <h3 id="totalTasks">
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Completed
+                    </span>
+
+                    <h3 id="completedTasks">
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <h3 id="pendingTasks">
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    %
+                </div>
+
+                <div>
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <h3 id="progressPercentage">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="dashboard-grid">
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Overall Progress
+                        </h3>
+
+                        <p>
+                            Your task completion rate
+                        </p>
+
+                    </div>
+
+                    <strong id="progressText">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="large-progress">
+
+                    <div id="progressBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Quick Actions
+                        </h3>
+
+                        <p>
+                            Manage your productivity
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <button onclick="openTaskModal()">
+                        + Add Task
+                    </button>
+
+                    <button onclick="openNoteModal()">
+                        + Add Note
+                    </button>
+
+                    <button onclick="openGoalModal()">
+                        + Add Goal
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TASKS ================= -->
+
+    <section id="tasks"
+             class="page-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="section-label">
+                    PRODUCTIVITY
+                </span>
+
+                <h2>
+                    My Tasks
+                </h2>
+
+                <p>
+                    Add, edit and manage your daily tasks.
+                </p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openTaskModal()">
+
+                + Add Task
+
+            </button>
+
+        </div>
+
+
+        <!-- TASK FILTERS -->
+
+        <div class="filters">
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input type="text"
+                       id="taskSearch"
+                       placeholder="Search tasks...">
+
+            </div>
+
+
+            <select id="statusFilter">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="pending">
+                    Pending
+                </option>
+
+                <option value="completed">
+                    Completed
+                </option>
+
+            </select>
+
+
+            <select id="priorityFilter">
+
+                <option value="all">
+                    All Priority
+                </option>
+
+                <option value="high">
+                    High
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="low">
+                    Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="taskList"
+             class="task-list">
+        </div>
+
+
+        <div id="emptyTasks"
+             class="empty-state">
+
+            <div>
+                📋
+            </div>
+
+            <h3>
+                No tasks found
+            </h3>
+
+            <p>
+                Add your first task to get started.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NOTES ================= -->
+
+    <section id="notes"
+             class="page-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="section-label">
+                    KNOWLEDGE
+                </span>
+
+                <h2>
+                    My Notes
+                </h2>
+
+                <p>
+                    Store important study notes and ideas.
+                </p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openNoteModal()">
+
+                + Add Note
+
+            </button>
+
+        </div>
+
+
+        <div id="notesGrid"
+             class="notes-grid">
+        </div>
+
+
+        <div id="emptyNotes"
+             class="empty-state">
+
+            <div>
+                📝
+            </div>
+
+            <h3>
+                No notes yet
+            </h3>
+
+            <p>
+                Create notes for your studies.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DEADLINES ================= -->
+
+    <section id="deadlines"
+             class="page-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="section-label">
+                    SCHEDULE
+                </span>
+
+                <h2>
+                    Upcoming Deadlines
+                </h2>
+
+                <p>
+                    Keep track of assignments, exams and projects.
+                </p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openTaskModal()">
+
+                + Add Deadline
+
+            </button>
+
+        </div>
+
+
+        <div id="deadlineList"
+             class="deadline-list">
+        </div>
+
+
+        <div id="emptyDeadlines"
+             class="empty-state">
+
+            <div>
+                ⏰
+            </div>
+
+            <h3>
+                No upcoming deadlines
+            </h3>
+
+            <p>
+                You're all caught up!
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GOALS ================= -->
+
+    <section id="goals"
+             class="page-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="section-label">
+                    DAILY TARGETS
+                </span>
+
+                <h2>
+                    Daily Goals
+                </h2>
+
+                <p>
+                    Set small goals and make progress every day.
+                </p>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openGoalModal()">
+
+                + Add Goal
+
+            </button>
+
+        </div>
+
+
+        <div id="goalsList"
+             class="goals-list">
+        </div>
+
+
+        <div id="emptyGoals"
+             class="empty-state">
+
+            <div>
+                🎯
+            </div>
+
+            <h3>
+                No daily goals
+            </h3>
+
+            <p>
+                Create a goal for today.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Student Productivity Dashboard
+        </p>
+
+        <span>
+            Built with HTML • CSS • JavaScript
+        </span>
+
+    </footer>
+
+</main>
+
+
+<!-- ================= TASK MODAL ================= -->
+
+<div class="modal"
+     id="taskModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+                onclick="closeModal('taskModal')">
+            ×
+        </button>
+
+        <h2 id="taskModalTitle">
+            Add New Task
+        </h2>
+
+        <form id="taskForm">
+
+            <input type="hidden"
+                   id="taskId">
+
+
+            <label>
+                Task Title
+            </label>
+
+            <input type="text"
+                   id="taskTitle"
+                   placeholder="e.g. Complete Java assignment"
+                   required>
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea id="taskDescription"
+                      placeholder="Task details..."
+                      rows="3"></textarea>
+
+
+            <div class="two-columns">
+
+                <div>
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <select id="taskPriority">
+
+                        <option value="high">
+                            High
+                        </option>
+
+                        <option value="medium"
+                                selected>
+                            Medium
+                        </option>
+
+                        <option value="low">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Deadline
+                    </label>
+
+                    <input type="date"
+                           id="taskDeadline">
+
+                </div>
+
+            </div>
+
+
+            <button type="submit"
+                    class="primary-btn full-btn">
+
+                Save Task
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NOTE MODAL ================= -->
+
+<div class="modal"
+     id="noteModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+                onclick="closeModal('noteModal')">
+            ×
+        </button>
+
+        <h2 id="noteModalTitle">
+            Add New Note
+        </h2>
+
+        <form id="noteForm">
+
+            <input type="hidden"
+                   id="noteId">
+
+
+            <label>
+                Note Title
+            </label>
+
+            <input type="text"
+                   id="noteTitle"
+                   placeholder="e.g. Java Important Topics"
+                   required>
+
+
+            <label>
+                Note Content
+            </label>
+
+            <textarea id="noteContent"
+                      placeholder="Write your notes..."
+                      rows="8"
+                      required></textarea>
+
+
+            <button type="submit"
+                    class="primary-btn full-btn">
+
+                Save Note
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= GOAL MODAL ================= -->
+
+<div class="modal"
+     id="goalModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+                onclick="closeModal('goalModal')">
+            ×
+        </button>
+
+        <h2>
+            Add Daily Goal
+        </h2>
+
+        <form id="goalForm">
+
+            <label>
+                Goal
+            </label>
+
+            <input type="text"
+                   id="goalTitle"
+                   placeholder="e.g. Study for 2 hours"
+                   required>
+
+
+            <label>
+                Target
+            </label>
+
+            <input type="number"
+                   id="goalTarget"
+                   min="1"
+                   value="1"
+                   required>
+
+
+            <button type="submit"
+                    class="primary-btn full-btn">
+
+                Save Goal
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- JavaScript -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
